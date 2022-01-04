@@ -4,8 +4,13 @@
 
 (def bpm-range {:min 30 :max 300})
 
+(defn bpm-validator [bpm]
+  (if (and (>= bpm (get bpm-range :min)) (<= bpm (get bpm-range :max)))
+    true
+    false))
+
 (defn quarter-note-duration [bpm]
-  (if (and (>= bpm (get bpm-range :min)) (<= bpm (get bpm-range :max))) 
+  (if (bpm-validator bpm) 
     (/ 60 bpm)
     (throw (Throwable. "BPM must be between 30 and 300!"))))
 

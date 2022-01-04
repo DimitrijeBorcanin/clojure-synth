@@ -21,8 +21,19 @@
 
 (def ratio (Math/pow 2 (/ 1 12))) ;; Equal temperament
 
+(defn pitch-splitter [pitch]
+  (if (= (count pitch) 3) 
+    (re-seq #".{1,2}" pitch)
+    (str/split pitch #"")))
+
+(defn pitch-validator [pitch]
+  (let [[note octave] (pitch-splitter pitch)]
+    (if (and (contains? available-notes (keyword note)) (some #{(Integer/parseInt octave)} available-octaves))
+      true
+      false)))
+
 (defn find-frequency [pitch]
-  (let [[note octave] (str/split pitch #"")
+  (let [[note octave] (pitch-splitter pitch)
         current-note (get available-notes (keyword note))
         base-note (get available-notes (keyword (get base-frequency :note)))
         base-octave (get base-frequency :octave)
