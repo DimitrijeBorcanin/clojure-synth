@@ -10,14 +10,19 @@
     false))
 
 (defn quarter-note-duration [bpm]
-  (if (bpm-validator bpm) 
-    (/ 60 bpm)
+  (if (bpm-validator bpm)
+    (/ 60.0 bpm)
     (throw (Throwable. "BPM must be between 30 and 300!"))))
 
 (defn note-duration [duration]
   (if (contains? available-durations duration)
-    (/ 4 duration)
+    (/ 4.0 duration)
     (throw (Throwable. "Invalid duration!"))))
 
 (defn get-milliseconds [duration]
   (* duration 1000))
+
+(defn note-to-milliseconds [note bpm]
+  (let [q-note (quarter-note-duration bpm)
+        n-duration (note-duration note)]
+    (Math/round (get-milliseconds (* q-note n-duration)))))
