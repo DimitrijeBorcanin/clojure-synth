@@ -1,13 +1,12 @@
 (ns clojure-synth.audio-formats)
 
-(import '(javax.sound.sampled AudioSystem DataLine$Info SourceDataLine
-                              AudioFormat AudioFormat$Encoding))
+(import '(javax.sound.sampled AudioFormat AudioFormat$Encoding))
 
 (def available-sample-rates #{44100 48000 88200 96000})
-(def available-bits #{8 16 24})
+(def available-bits #{8 16})
 (def available-channels #{1 2})
 
-(defn format-validation
+(defn format-validator
   [sample-rate bits channels]
   (if (and
        (contains? available-sample-rates sample-rate)
@@ -28,7 +27,7 @@
 
 (defn custom-format
   [sample-rate bits channels]
-  (if (format-validation sample-rate bits channels)
+  (if (format-validator sample-rate bits channels)
     (AudioFormat. AudioFormat$Encoding/PCM_SIGNED
                   sample-rate
                   bits
