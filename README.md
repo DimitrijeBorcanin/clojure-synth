@@ -1,44 +1,35 @@
 # clojure-synth
 
-FIXME: description
+An app designed to output monophonic sound waves (sine, square, sawtooth).
+
+This app generates basic sound waves to generate monophonic tones. To play a tone or a melody, you have to supply notes; they are represented as vectors with three attributes - pitch, volume and duration. These attributes are based on something you might find in a sheet music programs. 
+
+Pitch is is represented as as string containing a note and it's octave (eg A4). App is based around A4 pitch set to 440Hz. All the other notes are then calculated on the spot, meaning you can change the value of A4 and all other notes will change during execution, based on equal temperament system. Pitches range from C0 to B8, any other pitches are unsupported and will throw an error.
+
+Volume can be in the range from 0 to a 100. The lowest value - 0 - can be used as a pause.
+
+Duration consist of 7 posible numbers to choose from: 1, 2, 4, 8, 16, 32, 64. These numbers represent the denominator of a fraction that represents note's duration. Quarter notes are the base of all other duration. They are represented as 4. When a certain bpm is supplied, app calculates the duration of a quarter note in milliseconds. After that all other durations are calculated by their ratio to the quarter note.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+
 
 ## Usage
 
-FIXME: explanation
+1. Define a custom format using audio-formats/custom-format function and pass sample rate, number of bits and number of channels as arguments
+    OR 
+    Use default format which is already defined as "af" variable.
 
-    $ java -jar clojure-synth-0.1.0-standalone.jar [args]
+2. Make your own melody by defining a vector containing note vectors. A note vector consists of pitch (C0 - B8), volume (0 - 100) and duration (1, 2, 4, 8, 16, 32, 64 - numbers represent the denominator of a fraction, eg. 4 is 1/4 or quarter note). You can use any pitch combined with 0 volume to get a pause. Eg. ["B4" 100 8]
+    OR
+    Use predefined melodies. They are stored in variables (rondo-alla-turca or samo-mi-kazi).
 
-## Options
+3. Choose oscillator function to be used for playback. Currently available oscillators are sine, square and sawtooth.
 
-FIXME: listing of options this app accepts.
+4. Play the melody! You can play your or predefined melody by calling the play-melody function and passing in audio format, oscillator, melody and beats per minute. Eg (play-melody af sine rondo-alla-turca 260)
 
-## Examples
+# Future updates
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2021 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+This app is easy to expand with many features. Some of those features are:
+- More oscillators
+- Playing the melody indefinitely or reacting to a key press on keyboard (therefore, computer keyboard can be used as an actual muscal keyboard)
