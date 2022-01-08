@@ -15,3 +15,10 @@
 ;; (play-melody audio-format oscillator melody bpm)
 ;; (play-melody af sine rondo-alla-turca 260)
 ;; (play-melody af sine samo-mi-kazi 165)
+
+(defn -main
+  []
+  (println "Clojure-Synth has started!")
+  (println "Press enter to play the default tune!")
+  (read-line)
+  (play-melody af sine samo-mi-kazi 165))

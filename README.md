@@ -10,9 +10,9 @@ Volume can be in the range from 0 to a 100. The lowest value - 0 - can be used a
 
 Duration consist of 7 posible numbers to choose from: 1, 2, 4, 8, 16, 32, 64. These numbers represent the denominator of a fraction that represents note's duration. Quarter notes are the base of all other duration. They are represented as 4. When a certain bpm is supplied, app calculates the duration of a quarter note in milliseconds. After that all other durations are calculated by their ratio to the quarter note.
 
-## Installation
+## Quick Start
 
-
+If you want to test this app, you can play the default tune easily! Type in lein run and you will be prompted to press enter. After that, a short audio sample will ring out.
 
 ## Usage
 
@@ -33,3 +33,4 @@ Duration consist of 7 posible numbers to choose from: 1, 2, 4, 8, 16, 32, 64. Th
 This app is easy to expand with many features. Some of those features are:
 - More oscillators
 - Playing the melody indefinitely or reacting to a key press on keyboard (therefore, computer keyboard can be used as an actual muscal keyboard)
+- Dotted durations
