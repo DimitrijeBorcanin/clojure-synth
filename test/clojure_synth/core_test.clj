@@ -1,7 +1,7 @@
 (ns clojure-synth.core-test
   (:require [clojure.test :refer :all]
-            [clojure-synth.core :refer :all]))
+            [clojure-synth.core :as core]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest playing-test
+  (testing "Melody plays."
+    (is (nil? (core/play-melody core/af core/sine core/samo-mi-kazi 165)))))
