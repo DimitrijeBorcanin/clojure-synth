@@ -12,9 +12,27 @@ Duration consist of 7 posible numbers to choose from: 1, 2, 4, 8, 16, 32, 64. Th
 
 ## Quick Start
 
-If you want to test this app, you can play the default tune easily! Type in lein run and you will be prompted to press enter. After that, a short audio sample will ring out.
+If you want to test this app, you can play the default tune easily! Type in lein run and you will be prompted to press enter. After that, a short audio sample will ring out. Alternatively, follow the instructions to play your melody.
 
 ## Usage
+
+Playing through command line:
+
+1. Type in lein run in your CLI.
+
+2. Test out predefined melody by typing in test or press enter to start making your melody.
+
+3. Enter beats per minute; value needs to be in range from 30 to 300.
+
+4. Choose oscillators by entering the corresponding number (1 - sine, 2 - square, 3 - sawtooth).
+
+5. Start inputing notes: pitch values need to be between C0 and B8, volume needs to be between 0 and 100 (0 can be used as a pause) and duration must be one of the following values: 1, 2, 4, 8, 16, 32, 64 - numbers represent the denominator of a fraction, eg. 4 is 1/4 or quarter note.
+
+6. When you are done inputing your melody type in done. Melody will play. 
+
+7. After that you can continue using the app from the start or exit anytime by typing in exit.
+
+Playing through code:
 
 1. Define a custom format using audio-formats/custom-format function and pass sample rate, number of bits and number of channels as arguments
     OR 
@@ -34,3 +52,5 @@ This app is easy to expand with many features. Some of those features are:
 - More oscillators
 - Playing the melody indefinitely or reacting to a key press on keyboard (therefore, computer keyboard can be used as an actual muscal keyboard)
 - Dotted durations
+- Erasing notes in CLI melody input
+- Case insensitive pitch

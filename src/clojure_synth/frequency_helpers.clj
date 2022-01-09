@@ -28,7 +28,7 @@
 
 (defn pitch-validator [pitch]
   (let [[note octave] (pitch-splitter pitch)]
-    (if (and (contains? available-notes (keyword note)) (some #{(Integer/parseInt octave)} available-octaves))
+    (if (and (contains? available-notes (keyword note)) (every? #(Character/isDigit %) octave) (some #{(Integer/parseInt octave)} available-octaves))
       true
       false)))
 

@@ -9,6 +9,11 @@
     true
     false))
 
+(defn duration-validator [duration]
+  (if (contains? available-durations duration)
+    true
+    false))
+
 (defn quarter-note-duration [bpm]
   (if (bpm-validator bpm)
     (/ 60.0 bpm)
